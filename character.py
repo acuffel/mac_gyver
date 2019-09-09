@@ -1,6 +1,5 @@
 from map import *
 
-
 # Class character : Allow a character to move
 class Character:
     def __init__(self, get_position_player):
@@ -13,15 +12,16 @@ class Character:
         if next_move == 'O':
             self.get_position_player[1] -= 1
             return self.get_position_player[1]
-        if next_move == "E":
+        elif next_move == "E":
             self.get_position_player[1] += 1
             return self.get_position_player[1]
-        if next_move == "S":
+        elif next_move == "S":
             self.get_position_player[0] += 1
             return self.get_position_player[0]
-        if next_move == "N":
+        elif next_move == "N":
             self.get_position_player[0] -= 1
             return self.get_position_player[0]
+
 
 def input_move():
     """Check if the client """

@@ -47,17 +47,12 @@ class Map:
         """Find the position of the exit"""
         return self.find_position_char("E")
 
-    # To rework !!! 
     def find_position_wall(self):
         """Find the position of a character in the map"""
-        idx_row = 0
-        list_wall = []
-        for row in self.map:
-            if "O" in row:
-                    idx_col = row.find("O")
-                    list_wall.append((idx_row, idx_col))
-            idx_row += 1
-        return list_wall
+        nb_col = len(self.map[0])
+        nb_row = len(self.map[1])
+        walls = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] == 'O']
+        return walls
 
     def get_clean_map(self, the_char):
         """Clean the start character after getting the positions"""
