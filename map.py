@@ -43,6 +43,7 @@ class Map:
         """Find the position of the player"""
         return self.find_position_char("S")
 
+
     def find_position_exit(self):
         """Find the position of the exit"""
         return self.find_position_char("E")
