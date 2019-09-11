@@ -8,7 +8,9 @@ class Map:
         - Name
         - Map
         - Start position
-        - Exit position"""
+        - Exit position
+        - Position Wall
+        - clean Map"""
         self.map_name = map_name
         self.map = self.launch_map()
         self.position_player = self.find_position_player()

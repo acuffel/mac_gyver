@@ -10,16 +10,16 @@ class Character:
 
     def move_player(self, next_move):
         """Move the player into the labyrinth and return the new position"""
-        if next_move == "4":
+        if next_move == "q":
             self.get_position_player[1] -= 1
             return self.get_position_player[1]
-        elif next_move == "6":
+        elif next_move == "d":
             self.get_position_player[1] += 1
             return self.get_position_player[1]
-        elif next_move == "2":
+        elif next_move == "s":
             self.get_position_player[0] += 1
             return self.get_position_player[0]
-        elif next_move == "8":
+        elif next_move == "z":
             self.get_position_player[0] -= 1
             return self.get_position_player[0]
 
