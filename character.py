@@ -1,5 +1,6 @@
 from map import *
 
+
 # Class character : Allow a character to move
 class Character:
     def __init__(self, get_position_player):
@@ -9,31 +10,19 @@ class Character:
 
     def move_player(self, next_move):
         """Move the player into the labyrinth and return the new position"""
-        if next_move == 'O':
+        if next_move == "q":
             self.get_position_player[1] -= 1
             return self.get_position_player[1]
-        elif next_move == "E":
+        elif next_move == "d":
             self.get_position_player[1] += 1
             return self.get_position_player[1]
-        elif next_move == "S":
+        elif next_move == "s":
             self.get_position_player[0] += 1
             return self.get_position_player[0]
-        elif next_move == "N":
+        elif next_move == "z":
             self.get_position_player[0] -= 1
             return self.get_position_player[0]
 
+    def __repr__(self):
+        return "{}".format(self.get_position_player)
 
-def input_move():
-    """Check if the client """
-    choice = input("Veuillez saisir un déplacement \n E : EST\n "
-                  "O : OUEST \n N : NORD \n S : SUD \n")
-    choice = choice.upper()
-    try:
-        if choice in ["E", "N", "S", "O"]:
-            return choice
-        else:
-            print("Il y a des erreurs dans la saisie de votre déplacement")
-            return input_move()
-    except ValueError:
-        print("Attention, ce n'est pas un déplacement autorisé \n")
-        return input_move()

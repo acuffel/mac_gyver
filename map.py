@@ -1,4 +1,5 @@
 import os
+import random
 
 
 # Class map : Get the maps in a file and launch it
@@ -8,13 +9,16 @@ class Map:
         - Name
         - Map
         - Start position
-        - Exit position"""
+        - Exit position
+        - Position Wall
+        - clean Map"""
         self.map_name = map_name
         self.map = self.launch_map()
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
         self.position_wall = self.find_position_wall()
         self.map_without_start = self.get_clean_map("S")
+        self.post_object = self.post_object()
 
     def launch_map(self):
         """Call the file of the map and put it in a list which contains the rows"""
@@ -58,7 +62,7 @@ class Map:
         """Clean the start character after getting the positions"""
         the_ret = []
         for row in self.map:
-            the_ret.append(row.replace(the_char," "))
+            the_ret.append(row.replace(the_char, " "))
         return the_ret
 
     def get_state_player(self, the_char):
@@ -80,3 +84,21 @@ class Map:
         if self.position_player == self.position_exit:
             print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
             return True
+
+    def post_object(self):
+        the_ret = []
+        nb_col = len(self.map[0])
+        nb_row = len(self.map[1])
+        find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
+                       != 'S' and self.map[x][y] != 'E']
+        position_object = random.choice(find_object)
+        # return position_object[0][1]
+        x = position_object[0]
+        y = position_object[1]
+
+        for elt in self.map:
+            the_ret.append(elt.replace(self.map[x][y], "A"))
+        #     the_ret.append(elt.replace(self.map[x][y], "A"))
+        #     x = [s.replace('a', 'b') for s in x]
+        return the_ret
+
