@@ -5,7 +5,9 @@ from map import *
 
 mac_gyver = Map("base_map")
 print("Ci-dessous la carte du jeu: \n")
+
 mac_gyver.post_object()
+
 mac_gyver.get_clean_map("S")
 
 print(mac_gyver)
