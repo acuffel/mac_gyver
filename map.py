@@ -1,4 +1,5 @@
 import os
+import random
 
 
 # Class map : Get the maps in a file and launch it
@@ -45,7 +46,6 @@ class Map:
         """Find the position of the player"""
         return self.find_position_char("S")
 
-
     def find_position_exit(self):
         """Find the position of the exit"""
         return self.find_position_char("E")
@@ -83,3 +83,18 @@ class Map:
         if self.position_player == self.position_exit:
             print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
             return True
+
+    def post_object(self):
+        the_ret = []
+        nb_col = len(self.map[0])
+        nb_row = len(self.map[1])
+        find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
+                       != 'S' and self.map[x][y] != 'E']
+        position_object = random.choice(find_object)
+        x = position_object[0]
+        y = position_object[1]
+        for elt in self.map:
+            the_ret.append(elt.replace(position_object, "A"))
+        return the_ret
+
+
