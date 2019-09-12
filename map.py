@@ -12,13 +12,13 @@ class Map:
         - Exit position
         - Position Wall
         - clean Map"""
+        self.map = []
         self.map_name = map_name
         self.map = self.launch_map()
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
-        self.position_wall = self.find_position_wall()
+        self.positions_wall = self.find_positions_wall()
         self.map_without_start = self.get_clean_map("S")
-        self.post_object = self.post_object()
 
     def launch_map(self):
         """Call the file of the map and put it in a list which contains the rows"""
@@ -26,12 +26,17 @@ class Map:
             if self.map_name.endswith(".txt"):
                 path = os.path.join("maps", self.map_name)
                 with open(path, "r") as files:
-                    contains = files.read()
-                    self.map = contains.split("\n")
+                    for line in files:
+                        theret = []
+                        for chr in line:
+                            theret.append(chr)
+                        self.map.append(theret)
+                    #contains = files.read()
+                    #self.map = contains.split("\n")
                     return self.map
 
     def __repr__(self):
-        """Print the map and join the rows"""
+        """Print the map and join the rows with position player"""
         return "\n".join(self.get_state_player("X"))
 
     def find_position_char(self, the_char):
@@ -51,7 +56,7 @@ class Map:
         """Find the position of the exit"""
         return self.find_position_char("E")
 
-    def find_position_wall(self):
+    def find_positions_wall(self):
         """Find the position of a character in the map"""
         nb_col = len(self.map[0])
         nb_row = len(self.map[1])
@@ -86,19 +91,16 @@ class Map:
             return True
 
     def post_object(self):
-        the_ret = []
         nb_col = len(self.map[0])
         nb_row = len(self.map[1])
         find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
                        != 'S' and self.map[x][y] != 'E']
         position_object = random.choice(find_object)
-        # return position_object[0][1]
         x = position_object[0]
         y = position_object[1]
+        self.map[x][y] = 'A'
 
-        for elt in self.map:
-            the_ret.append(elt.replace(self.map[x][y], "A"))
-        #     the_ret.append(elt.replace(self.map[x][y], "A"))
-        #     x = [s.replace('a', 'b') for s in x]
-        return the_ret
-
+        #for row in self.map:
+          #  for elt in row:
+          #      self.map[x] = 'A'
+        #return "\n".join(self.map)
