@@ -18,7 +18,7 @@ class Map:
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
         self.positions_wall = self.find_positions_wall()
-        self.map_without_start = self.get_clean_map("S")
+
 
     def launch_map(self):
         """Call the file of the map and put it in a list which contains the rows"""
@@ -37,20 +37,20 @@ class Map:
 
     def __repr__(self):
         """Print the map and join the rows with position player"""
-        return "\n".join(self.get_state_player("X"))
+        return "".join([''.join(a) for a in self.map])
 
     def find_position_char(self, the_char):
         """Find the position of a character in the map"""
         idx_row = 0
         for row in self.map:
             if the_char in row:
-                idx_col = row.find(the_char)
+                idx_col = row.index(the_char)
                 return [idx_row, idx_col]
             idx_row += 1
 
     def find_position_player(self):
         """Find the position of the player"""
-        return self.find_position_char("S")
+        return self.find_position_char("X")
 
     def find_position_exit(self):
         """Find the position of the exit"""
@@ -58,30 +58,28 @@ class Map:
 
     def find_positions_wall(self):
         """Find the position of a character in the map"""
-        nb_col = len(self.map[0])
-        nb_row = len(self.map[1])
-        walls = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] == 'O']
+        # nb_col = len(self.map[0])
+        # nb_row = len(self.map[1])
+        # walls = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] == 'O']
+        # return walls
+        walls = []
+        idx_row = 0
+        for row in self.map:
+            idx_col = 0
+            for col in row:
+                if "O" in col:
+                    walls.append((idx_row, idx_col))
+                idx_col += 1
+            idx_row += 1
         return walls
 
     def get_clean_map(self, the_char):
         """Clean the start character after getting the positions"""
         the_ret = []
         for row in self.map:
-            the_ret.append(row.replace(the_char, " "))
-        return the_ret
-
-    def get_state_player(self, the_char):
-        """Return a new version of the map with the new place of the player"""
-        the_ret = []
-        idx_row = 0
-        for row in self.map_without_start:
-            if idx_row == self.position_player[0]:
-                temp = list(row)
-                temp[self.position_player[1]] = the_char
-                the_ret.append("".join(temp))
-            else:
-                the_ret.append(row)
-            idx_row += 1
+            if the_char in row:
+                the_char = " "
+            the_ret.append(row)
         return the_ret
 
     def is_won(self):
@@ -90,17 +88,17 @@ class Map:
             print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
             return True
 
-    def post_object(self):
-        nb_col = len(self.map[0])
-        nb_row = len(self.map[1])
-        find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
-                       != 'S' and self.map[x][y] != 'E']
-        position_object = random.choice(find_object)
-        x = position_object[0]
-        y = position_object[1]
-        self.map[x][y] = 'A'
-
-        #for row in self.map:
-          #  for elt in row:
-          #      self.map[x] = 'A'
-        #return "\n".join(self.map)
+    # def post_object(self):
+    #     nb_col = len(self.map[0])
+    #     nb_row = len(self.map[1])
+    #     find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
+    #                    != 'S' and self.map[x][y] != 'E']
+    #     position_object = random.choice(find_object)
+    #     x = position_object[0]
+    #     y = position_object[1]
+    #     self.map[x][y] = 'A'
+    #
+    #     #for row in self.map:
+    #       #  for elt in row:
+    #       #      self.map[x] = 'A'
+    #     #return "\n".join(self.map)
