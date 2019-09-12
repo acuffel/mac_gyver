@@ -17,8 +17,7 @@ class Map:
         self.map = self.launch_map()
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
-        self.positions_wall = self.find_positions_wall()
-        self.map_without_start = self.get_clean_map("S")
+        self.positions_wall = self.find_positions_wall('O')
 
     def launch_map(self):
         """Call the file of the map and put it in a list which contains the rows"""
@@ -37,14 +36,15 @@ class Map:
 
     def __repr__(self):
         """Print the map and join the rows with position player"""
-        return "\n".join(self.get_state_player("X"))
+        self.map[0] + self.map[1]
+        return "\n".join(self.map)
 
     def find_position_char(self, the_char):
         """Find the position of a character in the map"""
         idx_row = 0
         for row in self.map:
             if the_char in row:
-                idx_col = row.find(the_char)
+                idx_col = row.index(the_char)
                 return [idx_row, idx_col]
             idx_row += 1
 
@@ -56,33 +56,27 @@ class Map:
         """Find the position of the exit"""
         return self.find_position_char("E")
 
-    def find_positions_wall(self):
+    def find_positions_wall(self, char_walls):
         """Find the position of a character in the map"""
-        nb_col = len(self.map[0])
-        nb_row = len(self.map[1])
-        walls = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] == 'O']
-        return walls
+        # nb_col = len(self.map[0])
+        # nb_row = len(self.map[1])
+        # walls = [(x, y) for x in enumerate(nb_row) for y in enumerate(nb_col) if self.map[x][y] == 'O']
+        # return walls
+        walls = []
+        for row in self.map:
+            if char_walls in row:
+                walls.append((self.map.index(row), row.index(char_walls)))
+            return walls
 
     def get_clean_map(self, the_char):
         """Clean the start character after getting the positions"""
         the_ret = []
         for row in self.map:
-            the_ret.append(row.replace(the_char, " "))
+            if the_char in row:
+                the_char = " "
+            the_ret.append(row)
         return the_ret
 
-    def get_state_player(self, the_char):
-        """Return a new version of the map with the new place of the player"""
-        the_ret = []
-        idx_row = 0
-        for row in self.map_without_start:
-            if idx_row == self.position_player[0]:
-                temp = list(row)
-                temp[self.position_player[1]] = the_char
-                the_ret.append("".join(temp))
-            else:
-                the_ret.append(row)
-            idx_row += 1
-        return the_ret
 
     def is_won(self):
         """Return True when the game is won"""
