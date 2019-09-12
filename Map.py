@@ -37,7 +37,7 @@ class Map:
 
     def __repr__(self):
         """Print the map and join the rows with position player"""
-        return "".join([''.join(a) for a in self.map])
+        return "".join([''.join(a) for a in self.get_state_player("X")])
 
     def find_position_char(self, the_char):
         """Find the position of a character in the map"""
@@ -50,7 +50,7 @@ class Map:
 
     def find_position_player(self):
         """Find the position of the player"""
-        return self.find_position_char("X")
+        return self.find_position_char("S")
 
     def find_position_exit(self):
         """Find the position of the exit"""
@@ -58,10 +58,6 @@ class Map:
 
     def find_positions_wall(self):
         """Find the position of a character in the map"""
-        # nb_col = len(self.map[0])
-        # nb_row = len(self.map[1])
-        # walls = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] == 'O']
-        # return walls
         walls = []
         idx_row = 0
         for row in self.map:
@@ -88,17 +84,68 @@ class Map:
             print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
             return True
 
-    # def post_object(self):
-    #     nb_col = len(self.map[0])
-    #     nb_row = len(self.map[1])
-    #     find_object = [(x, y) for x in range(nb_row) for y in range(nb_col) if self.map[x][y] != 'O' and self.map[x][y]
-    #                    != 'S' and self.map[x][y] != 'E']
-    #     position_object = random.choice(find_object)
-    #     x = position_object[0]
-    #     y = position_object[1]
-    #     self.map[x][y] = 'A'
-    #
-    #     #for row in self.map:
-    #       #  for elt in row:
-    #       #      self.map[x] = 'A'
-    #     #return "\n".join(self.map)
+    def get_state_player(self, the_char):
+        """Return a new version of the map with the new place of the player"""
+        the_ret = []
+        idx_row = 0
+        for row in self.map:
+            if idx_row == self.position_player[0]:
+                temp = list(row)
+                temp[self.position_player[1]] = the_char
+                the_ret.append("".join(temp))
+            else:
+                the_ret.append(row)
+            idx_row += 1
+        return the_ret
+
+    def move_player(self, next_move):
+        """Move the player into the labyrinth and return the new position"""
+        # move left
+        if next_move == "q":
+            self.position_player[1] -= 1
+            if tuple(self.position_player) in self.positions_wall:
+                return self
+            return self.position_player[1]
+        # move right
+        elif next_move == "d":
+            self.position_player[1] += 1
+            if tuple(self.position_player) in self.positions_wall:
+                return self
+            return self.position_player[1]
+        # move down
+        elif next_move == "s":
+            self.position_player[0] += 1
+            if tuple(self.position_player) in self.positions_wall:
+                return self
+            return self.position_player[0]
+        # move up
+        elif next_move == "z":
+            self.position_player[0] -= 1
+            if tuple(self.position_player) in self.positions_wall:
+                return self
+            return self.position_player[0]
+
+    def post_object(self):
+        """Create objects in the map"""
+        find_objects = []
+        idx_row = 0
+        for row in self.map:
+            idx_col = 0
+            for col in row:
+                if " " in col:
+                    find_objects.append((idx_row, idx_col))
+                idx_col += 1
+            idx_row += 1
+        random_position_object1 = random.choice(find_objects)
+        random_position_object2 = random.choice(find_objects)
+        if random_position_object1 != random_position_object2:
+            x1 = random_position_object1[0]
+            y1 = random_position_object1[1]
+            x2 = random_position_object2[0]
+            y2 = random_position_object2[1]
+            self.map[x1][y1] = 'A'
+            self.map[x2][y2] = 'B'
+            return self.map
+        else:
+            return self
+
