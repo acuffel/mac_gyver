@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b02f6021-00b3-4834-99cf-8ab78097b67c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Launching.py" beforeDir="false" afterPath="$PROJECT_DIR$/Launching.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/base_map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/maps/base_map.txt" afterDir="false" />
-    </list>
+    <list default="true" id="b02f6021-00b3-4834-99cf-8ab78097b67c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +63,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="71" />
     <option name="y" value="35" />
     <option name="width" value="1113" />
@@ -155,8 +150,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19940476" />
@@ -167,7 +161,7 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50074404" side_tool="true" weight="0.49517685" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49925596" visible="true" weight="0.3392283" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925596" weight="0.3392283" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39871383" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
