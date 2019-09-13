@@ -18,6 +18,7 @@ class Map:
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
         self.positions_wall = self.find_positions_wall()
+        self.counter = []
 
     def launch_map(self):
         """Call the file of the map and put it in a list which contains the rows"""
@@ -83,7 +84,10 @@ class Map:
     def is_won(self):
         """Return True when the game is won"""
         if self.position_player == self.position_exit:
-            print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
+            if len(self.counter) == 2:
+                print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
+            else:
+                print("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
             return True
 
     def get_state_player(self, the_char):
@@ -151,15 +155,16 @@ class Map:
         else:
             return self
 
-    def catch_object(self, object):
-        if self.position_player == self.find_position_char(object):
-            print("Vous avez attrapé l'objet : {}".format(object))
-            self.clean_char(object)
+    def catch_object(self, *objects_on_map):
+        objects_catch = list(objects_on_map)
+        for object in objects_catch:
+            if self.position_player == self.find_position_char(object):
+                self.counter.append(object)
+                print("Félicitations! Vous avez récupéré l'objet : {}".format(object))
+                self.clean_char(object)
+                print("Mac gyver possède maintenant les objets :")
+                for element in self.counter:
+                    print("-{}".format(element))
 
-    def object_counter(self, *objects):
-        counter = []
-        if self.catch_object(objects):
-            counter.append(objects)
-            for elmt in counter:
-                return print("Mac Gyver a déjà récupéré : {}".format(elmt))
+
 
