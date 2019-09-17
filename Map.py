@@ -1,5 +1,6 @@
 import os
 import random
+import pygame
 
 
 # Class map : Get the maps in a file and launch it
@@ -10,15 +11,16 @@ class Map:
         - Map
         - Start position
         - Exit position
-        - Position Wall
-        - clean Map"""
+        - Guardian position
+        - Walls position
+        - Object counter"""
         self.map = []
         self.map_name = map_name
         self.map = self.launch_map()
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
         self.position_guardian = self.find_position_guardian()
-        self.positions_wall = self.find_positions_wall()
+        self.positions_walls = self.find_positions_walls()
         self.counter = []
 
     def launch_map(self):
@@ -61,7 +63,7 @@ class Map:
         """Find the position of the guardian"""
         return self.find_position_char("G")
 
-    def find_positions_wall(self):
+    def find_positions_walls(self):
         """Find the position of a character in the map"""
         walls = []
         idx_row = 0
@@ -124,25 +126,25 @@ class Map:
         # move left
         if next_move == "q":
             self.position_player[1] -= 1
-            if tuple(self.position_player) in self.positions_wall:
+            if tuple(self.position_player) in self.positions_walls:
                 self.position_player[1] += 1
             return self.position_player[1]
         # move right
         elif next_move == "d":
             self.position_player[1] += 1
-            if tuple(self.position_player) in self.positions_wall:
+            if tuple(self.position_player) in self.positions_walls:
                 self.position_player[1] -= 1
             return self.position_player[1]
         # move down
         elif next_move == "s":
             self.position_player[0] += 1
-            if tuple(self.position_player) in self.positions_wall:
+            if tuple(self.position_player) in self.positions_walls:
                 self.position_player[0] -= 1
             return self.position_player[0]
         # move up
         elif next_move == "z":
             self.position_player[0] -= 1
-            if tuple(self.position_player) in self.positions_wall:
+            if tuple(self.position_player) in self.positions_walls:
                 self.position_player[0] += 1
             return self.position_player[0]
 
@@ -171,6 +173,7 @@ class Map:
             return self
 
     def catch_object(self, *objects_on_map):
+        """Create a list of objects when the player catch one"""
         objects_catch = list(objects_on_map)
         for object in objects_catch:
             if self.position_player == self.find_position_char(object):

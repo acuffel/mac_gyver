@@ -8,8 +8,11 @@ mac_gyver = Map("base_map")
 print("Ci-dessous la carte du jeu: \n")
 mac_gyver.post_object()
 mac_gyver.clean_char("S")
-print(mac_gyver)
-
+# print(mac_gyver)
+print(mac_gyver.position_player)
+print(mac_gyver.position_exit)
+print(mac_gyver.position_guardian)
+print(mac_gyver.positions_walls)
 
 won = False
 dead = False
