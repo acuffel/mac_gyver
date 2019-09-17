@@ -17,6 +17,7 @@ class Map:
         self.map = self.launch_map()
         self.position_player = self.find_position_player()
         self.position_exit = self.find_position_exit()
+        self.position_guardian = self.find_position_guardian()
         self.positions_wall = self.find_positions_wall()
         self.counter = []
 
@@ -56,6 +57,10 @@ class Map:
         """Find the position of the exit"""
         return self.find_position_char("E")
 
+    def find_position_guardian(self):
+        """Find the position of the guardian"""
+        return self.find_position_char("G")
+
     def find_positions_wall(self):
         """Find the position of a character in the map"""
         walls = []
@@ -81,13 +86,23 @@ class Map:
             idx_row += 1
         return self.map
 
+    def pass_guardian(self):
+        """Remove the guardian when the player get all objects, otherwise he dies"""
+        if self.position_player == self.find_position_guardian():
+            if len(self.counter) == 2:
+                print("Bien joué, Tu as réussi à endormir le garde")
+                self.clean_char("G")
+            else:
+                print("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
+                return True
+
     def is_won(self):
         """Return True when the game is won"""
         if self.position_player == self.position_exit:
-            if len(self.counter) == 2:
-                print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
-            else:
-                print("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
+            # if len(self.counter) == 2:
+            print("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
+            # else:
+            #     print("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
             return True
 
     def get_state_player(self, the_char):

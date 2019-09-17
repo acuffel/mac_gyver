@@ -12,11 +12,13 @@ print(mac_gyver)
 
 
 won = False
-while not won:
+dead = False
+while not won or dead:
     choose_move = input("Entrer un mouvement pour déplacer Mac gyver") #We ask to the player to choose the move
     mac_gyver.move_player(choose_move)
     print(mac_gyver)
     mac_gyver.catch_object("A", "B")
+    dead = mac_gyver.pass_guardian()
     won = mac_gyver.is_won()
 
 
