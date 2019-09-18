@@ -21,6 +21,7 @@ class Map:
         self.position_exit = self.find_position_exit()
         self.position_guardian = self.find_position_guardian()
         self.positions_walls = self.find_positions_walls()
+        self.map_new_player = self.get_state_player('X')
         self.counter = []
 
     def launch_map(self):
