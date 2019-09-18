@@ -1,4 +1,4 @@
-"""Constants of the game Mac gyver"""
+"""Constants for the game Mac gyver"""
 
 # constants for the window
 number_sprite = 17
