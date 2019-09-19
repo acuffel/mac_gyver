@@ -16,17 +16,17 @@ window.blit(fond, (0, 0))
 # Function which post the images in the window
 def images_on_map(map, position_player):
     # Images
-    img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.png")).convert_alpha()
+    img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.jpg")).convert_alpha()
     img_mac_gyver_onscall = pygame.transform.scale(img_mac_gyver, (30, 30))
-    img_walls = pygame.image.load(os.path.join('ressource', "mur.png")).convert_alpha()
+    img_walls = pygame.image.load(os.path.join('ressource', "mur.jpg")).convert_alpha()
     img_walls_onscall = pygame.transform.scale(img_walls, (30, 30))
-    img_guardian = pygame.image.load(os.path.join('ressource', "Gardien.png")).convert_alpha()
+    img_guardian = pygame.image.load(os.path.join('ressource', "Gardien.jpg")).convert_alpha()
     img_guardian_onscall = pygame.transform.scale(img_guardian, (30, 30))
-    img_exit = pygame.image.load(os.path.join('ressource', "exit.png")).convert_alpha()
+    img_exit = pygame.image.load(os.path.join('ressource', "exit.jpg")).convert_alpha()
     img_exit_onscall = pygame.transform.scale(img_exit, (30, 30))
-    img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.png")).convert_alpha()
+    img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.jpg")).convert_alpha()
     img_obj_a_onscall = pygame.transform.scale(img_obj_a, (30, 30))
-    img_obj_b = pygame.image.load(os.path.join('ressource', "ether.png")).convert_alpha()
+    img_obj_b = pygame.image.load(os.path.join('ressource', "ether.jpg")).convert_alpha()
     img_obj_b_onscall = pygame.transform.scale(img_obj_b, (30, 30))
 
     num_col = 0
@@ -89,7 +89,6 @@ while not (won or dead):
     # Display the window after actions
     window.blit(fond, (0, 0))
     images_on_map(mac_gyver.map_new_player, mac_gyver.position_player)
-    # move_image_macgyver(mac_gyver.map_new_player, mac_gyver.position_player)
 
     # Reload screen
     pygame.display.flip()
