@@ -74,10 +74,12 @@ class Character:
                 clean.clean_char("G")
             else:
                 display.display_text_on_map("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
+                # display.pause_game()
                 return True
 
     def is_won(self, position_exit, display):
         """Return True when the game is won"""
         if self.position_player == position_exit.find_position_exit():
             display.display_text_on_map("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
+            # display.pause_game()
             return True
