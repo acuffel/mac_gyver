@@ -38,16 +38,12 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
                         character_mac_gyver.move_player("s")
-                        pygame.time.get_ticks()
                     elif event.key == pygame.K_UP:
                         character_mac_gyver.move_player("z")
-                        pygame.time.get_ticks()
                     elif event.key == pygame.K_RIGHT:
                         character_mac_gyver.move_player("d")
-                        pygame.time.get_ticks()
                     elif event.key == pygame.K_LEFT:
                         character_mac_gyver.move_player("q")
-                        pygame.time.get_ticks()
 
             # Interaction with Mac Gyver and the map
             character_mac_gyver.catch_object(map_mac_gyver, map_mac_gyver, display_window,  "A", "B")
