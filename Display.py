@@ -1,7 +1,8 @@
 import pygame
 import os
 from constants import *
-import time
+# import time
+
 
 class Display:
 
@@ -59,18 +60,17 @@ class Display:
     def display_text_on_map(self, display_text):
         """Display text on the map"""
         white = (255, 255, 255)
-        start_time = pygame.time.get_ticks()
-        display = True
+        font_text = pygame.font.Font('freesansbold.ttf', 12)
+        text = font_text.render(display_text, True, white)
+        text_rect = text.get_rect()
+        text_rect.center = (SIDE_WINDOW // 2, SIDE_WINDOW + (SIZE_SPRITE / 2))
+        self.window.blit(text, text_rect)
 
-        while display:
-            counting_time = pygame.time.get_ticks() - start_time
+    def refresh_text_on_map(self):
+        """Remove text on the map"""
+        black = (0, 0, 0)
+        pygame.draw.rect(self.window, black, (0, SIDE_WINDOW - SIZE_SPRITE, SIDE_WINDOW, SIZE_SPRITE), 100)
 
-            font_text = pygame.font.Font('freesansbold.ttf', 15)
-            text = font_text.render(display_text, True, white)
-            text_rect = text.get_rect()
-            text_rect.center = (SIDE_WINDOW // 2, SIDE_WINDOW + (SIZE_SPRITE / 2))
-            self.window.blit(text, text_rect)
-
-            if counting_time > 2:
-                display = False
+    def pause_game(self):
+        pygame.time.wait(1000)
 
