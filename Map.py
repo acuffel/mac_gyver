@@ -11,8 +11,7 @@ class Map:
         - Start position
         - Exit position
         - Guardian position
-        - Walls position
-        - Object counter"""
+        - Walls position"""
         self.map = []
         self.map_name = map_name
         self.map = self.launch_map()
