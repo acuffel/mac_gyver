@@ -94,8 +94,13 @@ class Game:
                     dead = character_mac_gyver.pass_guardian(map_mac_gyver, map_mac_gyver, display_window)
                     won = character_mac_gyver.is_won(map_mac_gyver, display_window)
 
-                    if (dead or won) is True:
-                        display_window.pause_game()
+                    if character_mac_gyver.position_player == map_mac_gyver.position_exit:
+                        won = True
+                    if character_mac_gyver.position_player == map_mac_gyver.position_guardian:
+                        if character_mac_gyver != 2:
+                            dead = True
+                    # if (dead or won) is True:
+                    #     display_window.pause_game()
 
                     # Display the window after actions
                     display_window.window.blit(display_window.background, (0, 0))
