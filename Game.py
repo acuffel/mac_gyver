@@ -15,7 +15,7 @@ class Game:
         # Main Loop
         continue_game = True
         while continue_game:
-            # Open window
+            # Open menu
             start_window = pygame.display.set_mode((SIDE_WINDOW, SIDE_WINDOW))
 
             # Display the menu in the window
@@ -30,10 +30,8 @@ class Game:
             pygame.key.set_repeat(400, 30)
 
             # Initializing Boolean for Loops
-            exit_game = False
-            won = False
-            dead = False
             display_menu = True
+            display_game = True
 
             # Loop for the menu
             while display_menu:
@@ -41,13 +39,13 @@ class Game:
                     if event.type == pygame.QUIT:
                         display_menu = False
                         continue_game = False
-                        exit_game = True
+                        display_game = False
 
-                    elif event.type == pygame.KEYDOWN:
+                    if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_b or event.key == pygame.K_ESCAPE:
                             display_menu = False
                             continue_game = False
-                            exit_game = True
+                            display_game = False
 
                         elif event.key == pygame.K_a:
                             display_menu = False
@@ -64,16 +62,19 @@ class Game:
             display_window = Display()
 
             # Loop for the game
-            while not (won or dead or exit_game):
+            while display_game:
                 # 30 fps
                 clock.tick(30)
+
+                win_menu = False
+                dead_menu = False
 
                 # Event for closing the window
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
-                        exit_game = True
+                        display_game = False
 
-                    elif event.type == pygame.KEYDOWN:
+                    if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_DOWN:
                             character_mac_gyver.move_player("s")
                             display_window.refresh_text_on_map()
@@ -96,11 +97,13 @@ class Game:
 
                     # Exit the window if the player win the game or died
                     if character_mac_gyver.position_player == map_mac_gyver.position_exit:
-                        won = True
-                    if character_mac_gyver.position_player == map_mac_gyver.position_guardian:
-                        if len(character_mac_gyver.counter) != 2:
-                            dead = True
+                        display_game = False
+                        win_menu = True
 
+                    if character_mac_gyver.position_player == map_mac_gyver.position_guardian \
+                            and len(character_mac_gyver.counter) != 2:
+                        display_game = False
+                        dead_menu = True
                     # Display the window after actions
                     display_window.window.blit(display_window.background, (0, 0))
                     display_window.display_images_on_map(character_mac_gyver.map_new_player, character_mac_gyver.position_player)
@@ -108,6 +111,53 @@ class Game:
                     # Reload screen
                     pygame.display.flip()
 
+                # If MacGyver dies, the game display the dead menu
+                while dead_menu is True:
+
+                    # Display the menu in the window
+                    dead_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
+                    dead_window_on_scall = pygame.transform.scale(dead_window, (SIDE_WINDOW, SIDE_WINDOW))
+                    start_window.blit(dead_window_on_scall, (0, 0))
+
+                    # Refresh the window
+                    pygame.display.flip()
+
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            dead_menu = False
+                            continue_game = False
+
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_b or event.key == pygame.K_ESCAPE:
+                                dead_menu = False
+                                continue_game = False
+
+                            if event.key == pygame.K_a:
+                                dead_menu = False
+
+                # If MacGyver wins, the game display the win menu
+                while win_menu is True:
+
+                    # Display the menu in the window
+                    win_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
+                    win_window_on_scall = pygame.transform.scale(win_window, (SIDE_WINDOW, SIDE_WINDOW))
+                    start_window.blit(win_window_on_scall, (0, 0))
+
+                    # Refresh the window
+                    pygame.display.flip()
+
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            win_menu = False
+                            continue_game = False
+
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_b or event.key == pygame.K_ESCAPE:
+                                win_menu = False
+                                continue_game = False
+
+                            if event.key == pygame.K_a:
+                                win_menu = False
 
 if __name__ == '__main__':
     Game().launch_game()
