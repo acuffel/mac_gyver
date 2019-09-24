@@ -8,26 +8,22 @@ from Character import *
 class Game:
 
     def launch_game(self):
-
+        """Launch the game"""
         pygame.init()
         clock = pygame.time.Clock()
 
-        # BOUCLE PRINCIPALE
+        # Main Loop
         continue_game = True
         while continue_game:
-
+            # Open window
             start_window = pygame.display.set_mode((SIDE_WINDOW, SIDE_WINDOW))
 
-            # Move the player when it stays pressed
-            pygame.key.set_repeat(400, 30)
-
-
-            # Chargement et affichage de l'écran d'accueil
+            # Display the menu in the window
             start_menu = pygame.image.load(os.path.join('ressource', "accueil-macgyver.png")).convert()
             start_menu_onscall = pygame.transform.scale(start_menu, (SIDE_WINDOW, SIDE_WINDOW))
             start_window.blit(start_menu_onscall, (0, 0))
 
-            # Rafraichissement
+            # Refresh the window
             pygame.display.flip()
 
             # Move the player when it stays pressed
@@ -39,6 +35,7 @@ class Game:
             dead = False
             display_menu = True
 
+            # Loop for the menu
             while display_menu:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -66,6 +63,7 @@ class Game:
 
             display_window = Display()
 
+            # Loop for the game
             while not (won or dead or exit_game):
                 # 30 fps
                 clock.tick(30)
@@ -91,11 +89,17 @@ class Game:
 
                     # Interaction with Mac Gyver and the map
                     character_mac_gyver.catch_object(map_mac_gyver, map_mac_gyver, display_window,  "A", "B")
-                    dead = character_mac_gyver.pass_guardian(map_mac_gyver, map_mac_gyver, display_window)
-                    won = character_mac_gyver.is_won(map_mac_gyver, display_window)
 
-                    if (dead or won) is True:
-                        display_window.pause_game()
+                    # Display text on the map
+                    character_mac_gyver.pass_guardian(map_mac_gyver, map_mac_gyver, display_window)
+                    character_mac_gyver.is_won(map_mac_gyver, display_window)
+
+                    # Exit the window if the player win the game or died
+                    if character_mac_gyver.position_player == map_mac_gyver.position_exit:
+                        won = True
+                    if character_mac_gyver.position_player == map_mac_gyver.position_guardian:
+                        if len(character_mac_gyver.counter) != 2:
+                            dead = True
 
                     # Display the window after actions
                     display_window.window.blit(display_window.background, (0, 0))

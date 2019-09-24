@@ -18,8 +18,8 @@ class Display:
         self.show_title = pygame.display.set_caption('Mac Gyver')
         self.time = None
 
-    # Function which post the images in the window
     def display_images_on_map(self, game_map, position_player):
+        """# Function which post the images in the window"""
         # Images
         img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.jpg")).convert_alpha()
         img_mac_gyver_onscall = pygame.transform.scale(img_mac_gyver, (30, 30))
@@ -72,5 +72,5 @@ class Display:
         pygame.draw.rect(self.window, black, (0, SIDE_WINDOW - SIZE_SPRITE, SIDE_WINDOW, SIZE_SPRITE), 100)
 
     def pause_game(self):
-        pygame.time.wait(1000)
+        pygame.time.delay(1000)
 
