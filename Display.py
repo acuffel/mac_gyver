@@ -1,7 +1,6 @@
 import pygame
 import os
 from constants import *
-# import time
 
 
 class Display:
@@ -29,9 +28,9 @@ class Display:
         img_guardian_onscall = pygame.transform.scale(img_guardian, (30, 30))
         img_exit = pygame.image.load(os.path.join('ressource', "exit.jpg")).convert_alpha()
         img_exit_onscall = pygame.transform.scale(img_exit, (30, 30))
-        img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.jpg")).convert_alpha()
+        img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.png")).convert_alpha()
         img_obj_a_onscall = pygame.transform.scale(img_obj_a, (30, 30))
-        img_obj_b = pygame.image.load(os.path.join('ressource', "ether.jpg")).convert_alpha()
+        img_obj_b = pygame.image.load(os.path.join('ressource', "ether.png")).convert_alpha()
         img_obj_b_onscall = pygame.transform.scale(img_obj_b, (30, 30))
 
         num_col = 0
