@@ -115,7 +115,7 @@ class Game:
                 while dead_menu is True:
 
                     # Display the menu in the window
-                    dead_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
+                    dead_window = pygame.image.load(os.path.join('ressource', "space.jpg")).convert()
                     dead_window_on_scall = pygame.transform.scale(dead_window, (SIDE_WINDOW, SIDE_WINDOW))
                     start_window.blit(dead_window_on_scall, (0, 0))
 
