@@ -1,7 +1,6 @@
 import pygame
 import os
 from constants import *
-# import time
 
 
 class Display:
@@ -21,7 +20,6 @@ class Display:
     def display_images_on_map(self, game_map, position_player):
         """# Function which post the images in the window"""
         # Images
-        white = (0, 0, 0)
         img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.jpg")).convert_alpha()
         img_mac_gyver_onscall = pygame.transform.scale(img_mac_gyver, (30, 30))
         img_walls = pygame.image.load(os.path.join('ressource', "mur.jpg")).convert_alpha()
