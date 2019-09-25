@@ -21,6 +21,7 @@ class Display:
     def display_images_on_map(self, game_map, position_player):
         """# Function which post the images in the window"""
         # Images
+        white = (0, 0, 0)
         img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.jpg")).convert_alpha()
         img_mac_gyver_onscall = pygame.transform.scale(img_mac_gyver, (30, 30))
         img_walls = pygame.image.load(os.path.join('ressource', "mur.jpg")).convert_alpha()
@@ -29,9 +30,9 @@ class Display:
         img_guardian_onscall = pygame.transform.scale(img_guardian, (30, 30))
         img_exit = pygame.image.load(os.path.join('ressource', "exit.jpg")).convert_alpha()
         img_exit_onscall = pygame.transform.scale(img_exit, (30, 30))
-        img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.jpg")).convert_alpha()
+        img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.png")).convert_alpha()
         img_obj_a_onscall = pygame.transform.scale(img_obj_a, (30, 30))
-        img_obj_b = pygame.image.load(os.path.join('ressource', "ether.jpg")).convert_alpha()
+        img_obj_b = pygame.image.load(os.path.join('ressource', "ether.png")).convert_alpha()
         img_obj_b_onscall = pygame.transform.scale(img_obj_b, (30, 30))
 
         num_col = 0
