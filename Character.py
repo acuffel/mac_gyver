@@ -62,9 +62,6 @@ class Character:
                 self.counter.append(object)
                 display.display_text_on_map("Félicitations! Vous avez récupéré l'objet : {}".format(object))
                 clean.clean_char(object)
-                # display.display_text_on_map("Mac gyver possède maintenant les objets :")
-                # for element in self.counter:
-                #     display.display_text_on_map("-{}".format(element))
 
     def pass_guardian(self, clean, position_guardian, display):
         """Remove the guardian when the player get all objects, otherwise he dies"""
@@ -74,10 +71,8 @@ class Character:
                 clean.clean_char("G")
             else:
                 display.display_text_on_map("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
-                # return True
 
     def is_won(self, position_exit, display):
         """Return True when the game is won"""
         if self.position_player == position_exit.find_position_exit():
             display.display_text_on_map("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
-            # return True

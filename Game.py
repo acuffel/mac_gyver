@@ -1,5 +1,4 @@
 import pygame
-import os
 from Map import *
 from Display import *
 from Character import *
@@ -52,7 +51,8 @@ class Game:
 
             # Call class Map and display the window
             map_mac_gyver = Map("base_map")
-            character_mac_gyver = Character(map_mac_gyver.position_player, map_mac_gyver.positions_walls,
+            character_mac_gyver = Character(map_mac_gyver.position_player,
+                                            map_mac_gyver.positions_walls,
                                             map_mac_gyver.map)
 
             # Initializing window
@@ -89,11 +89,17 @@ class Game:
                             display_window.refresh_text_on_map()
 
                     # Interaction with Mac Gyver and the map
-                    character_mac_gyver.catch_object(map_mac_gyver, map_mac_gyver, display_window,  "A", "B")
+                    character_mac_gyver.catch_object(map_mac_gyver,
+                                                     map_mac_gyver,
+                                                     display_window,
+                                                     "A", "B")
 
                     # Display text on the map
-                    character_mac_gyver.pass_guardian(map_mac_gyver, map_mac_gyver, display_window)
-                    character_mac_gyver.is_won(map_mac_gyver, display_window)
+                    character_mac_gyver.pass_guardian(map_mac_gyver,
+                                                      map_mac_gyver,
+                                                      display_window)
+                    character_mac_gyver.is_won(map_mac_gyver,
+                                               display_window)
 
                     # Exit the window if the player win the game or died
                     if character_mac_gyver.position_player == map_mac_gyver.position_exit:
@@ -106,7 +112,8 @@ class Game:
                         dead_menu = True
                     # Display the window after actions
                     display_window.window.blit(display_window.background, (0, 0))
-                    display_window.display_images_on_map(character_mac_gyver.map_new_player, character_mac_gyver.position_player)
+                    display_window.display_images_on_map(character_mac_gyver.map_new_player,
+                                                         character_mac_gyver.position_player)
 
                     # Reload screen
                     pygame.display.flip()
@@ -115,7 +122,7 @@ class Game:
                 while dead_menu is True:
 
                     # Display the menu in the window
-                    dead_window = pygame.image.load(os.path.join('ressource', "space.jpg")).convert()
+                    dead_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
                     dead_window_on_scall = pygame.transform.scale(dead_window, (SIDE_WINDOW, SIDE_WINDOW))
                     start_window.blit(dead_window_on_scall, (0, 0))
 
@@ -158,6 +165,7 @@ class Game:
 
                             if event.key == pygame.K_a:
                                 win_menu = False
+
 
 if __name__ == '__main__':
     Game().launch_game()
