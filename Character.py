@@ -60,7 +60,8 @@ class Character:
         for object in objects_catch:
             if self.position_player == position_char.find_position_char(object):
                 self.counter.append(object)
-                display.display_text_on_map("Félicitations! Vous avez récupéré l'objet : {}".format(object))
+                display.display_text_on_map("Félicitations! Vous possèdez maintenant {} objet(s)"
+                                            .format(len(self.counter)))
                 clean.clean_char(object)
 
     def pass_guardian(self, clean, position_guardian, display):

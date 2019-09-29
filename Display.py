@@ -15,7 +15,6 @@ class Display:
         self.background = pygame.image.load(os.path.join('ressource', "grass.jpg")).convert()
         self.window.blit(self.background, (0, 0))
         self.show_title = pygame.display.set_caption('Mac Gyver')
-        self.time = None
 
     def display_images_on_map(self, game_map, position_player):
         """# Function which post the images in the window"""
