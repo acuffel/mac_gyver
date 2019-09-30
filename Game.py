@@ -17,8 +17,10 @@ class Game:
 
     def main_loop(self):
         # Display the menu in the window
-        start_menu = pygame.image.load(os.path.join('ressource', "accueil-macgyver.png")).convert()
-        start_menu_onscall = pygame.transform.scale(start_menu, (SIDE_WINDOW, SIDE_WINDOW))
+        start_menu = pygame.image.load(
+            os.path.join('ressource', "accueil-macgyver.png")).convert()
+        start_menu_onscall = pygame.transform.scale(
+            start_menu, (SIDE_WINDOW, SIDE_WINDOW))
         self.start_window.blit(start_menu_onscall, (0, 0))
 
         # Refresh the window
@@ -26,7 +28,6 @@ class Game:
 
         # Move the player when it stays pressed
         pygame.key.set_repeat(400, 30)
-
 
     def display_objects(self, map_mac_gyver):
         map_mac_gyver.post_object()
@@ -49,7 +50,8 @@ class Game:
                     self.display_menu = False
                     self.display_game = True
 
-    def display_game_loop(self, map_mac_gyver, character_mac_gyver, display_window):
+    def display_game_loop(self, map_mac_gyver, character_mac_gyver,
+                          display_window):
         # 30 fps
         self.clock.tick(30)
 
@@ -87,26 +89,31 @@ class Game:
                                        display_window)
 
             # Exit the window if the player win the game or died
-            if character_mac_gyver.position_player == map_mac_gyver.position_exit:
+            if character_mac_gyver.position_player == \
+                    map_mac_gyver.position_exit:
                 self.display_game = False
                 self.win_menu = True
 
-            if character_mac_gyver.position_player == map_mac_gyver.position_guardian \
+            if character_mac_gyver.position_player == \
+                    map_mac_gyver.position_guardian \
                     and len(character_mac_gyver.counter) != 2:
                 self.display_game = False
                 self.dead_menu = True
             # Display the window after actions
             display_window.window.blit(display_window.background, (0, 0))
-            display_window.display_images_on_map(character_mac_gyver.map_new_player,
-                                                 character_mac_gyver.position_player)
+            display_window.display_images_on_map(
+                character_mac_gyver.map_new_player,
+                character_mac_gyver.position_player)
 
             # Reload screen
             pygame.display.flip()
 
     def dead_menu_loop(self):
         # Display the menu in the window
-        dead_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
-        dead_window_on_scall = pygame.transform.scale(dead_window, (SIDE_WINDOW, SIDE_WINDOW))
+        dead_window = pygame.image.load(
+            os.path.join('ressource', "end_menu.jpg")).convert()
+        dead_window_on_scall = pygame.transform.scale(
+            dead_window, (SIDE_WINDOW, SIDE_WINDOW))
         self.start_window.blit(dead_window_on_scall, (0, 0))
 
         # Refresh the window
@@ -132,8 +139,11 @@ class Game:
 
     def win_menu_loop(self):
         # Display the menu in the window
-        win_window = pygame.image.load(os.path.join('ressource', "end_menu.jpg")).convert()
-        win_window_on_scall = pygame.transform.scale(win_window, (SIDE_WINDOW, SIDE_WINDOW))
+        win_window = pygame.image.load(
+            os.path.join('ressource', "end_menu.jpg")).convert()
+        win_window_on_scall = pygame.transform.scale(win_window,
+                                                     (SIDE_WINDOW,
+                                                      SIDE_WINDOW))
         self.start_window.blit(win_window_on_scall, (0, 0))
 
         # Refresh the window
@@ -156,5 +166,3 @@ class Game:
                     self.display_game = False
                     self.continue_game = True
                     self.display_menu = True
-
-
