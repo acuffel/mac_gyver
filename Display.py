@@ -10,27 +10,34 @@ class Display:
 
     def __init__(self):
         # Open window pygame
-        self.window = pygame.display.set_mode((SIDE_WINDOW, SIDE_WINDOW + SIZE_SPRITE))
+        self.window = pygame.display.set_mode((SIDE_WINDOW,
+                                               SIDE_WINDOW + SIZE_SPRITE))
         # Loading and display fond
-        self.background = pygame.image.load(os.path.join('ressource', "grass.jpg")).convert()
+        self.background = pygame.image.load(os.path.join(
+            'ressource', "grass.jpg")).convert()
         self.window.blit(self.background, (0, 0))
         self.show_title = pygame.display.set_caption('Mac Gyver')
-        self.time = None
 
     def display_images_on_map(self, game_map, position_player):
-        """# Function which post the images in the window"""
+        """ Function which post the images in the window"""
         # Images
-        img_mac_gyver = pygame.image.load(os.path.join('ressource', "MacGyver.jpg")).convert_alpha()
+        img_mac_gyver = pygame.image.load(os.path.join(
+            'ressource', "MacGyver.jpg")).convert_alpha()
         img_mac_gyver_onscall = pygame.transform.scale(img_mac_gyver, (30, 30))
-        img_walls = pygame.image.load(os.path.join('ressource', "mur.jpg")).convert_alpha()
+        img_walls = pygame.image.load(os.path.join(
+            'ressource', "mur.jpg")).convert_alpha()
         img_walls_onscall = pygame.transform.scale(img_walls, (30, 30))
-        img_guardian = pygame.image.load(os.path.join('ressource', "Gardien.jpg")).convert_alpha()
+        img_guardian = pygame.image.load(os.path.join(
+            'ressource', "Gardien.jpg")).convert_alpha()
         img_guardian_onscall = pygame.transform.scale(img_guardian, (30, 30))
-        img_exit = pygame.image.load(os.path.join('ressource', "exit.jpg")).convert_alpha()
+        img_exit = pygame.image.load(os.path.join(
+            'ressource', "exit.jpg")).convert_alpha()
         img_exit_onscall = pygame.transform.scale(img_exit, (30, 30))
-        img_obj_a = pygame.image.load(os.path.join('ressource', "seringue.png")).convert_alpha()
+        img_obj_a = pygame.image.load(os.path.join(
+            'ressource', "seringue.png")).convert_alpha()
         img_obj_a_onscall = pygame.transform.scale(img_obj_a, (30, 30))
-        img_obj_b = pygame.image.load(os.path.join('ressource', "ether.png")).convert_alpha()
+        img_obj_b = pygame.image.load(os.path.join(
+            'ressource', "ether.png")).convert_alpha()
         img_obj_b_onscall = pygame.transform.scale(img_obj_b, (30, 30))
 
         num_col = 0
@@ -52,7 +59,8 @@ class Display:
                 elif sprite == 'B':
                     self.window.blit(img_obj_b_onscall, (x, y))
                 elif sprite == 'X':
-                    self.window.blit(img_mac_gyver_onscall, (x_macgyver, y_macgyver))
+                    self.window.blit(img_mac_gyver_onscall,
+                                     (x_macgyver, y_macgyver))
                 num_row += 1
             num_col += 1
 
@@ -68,8 +76,5 @@ class Display:
     def refresh_text_on_map(self):
         """Remove text on the map"""
         black = (0, 0, 0)
-        pygame.draw.rect(self.window, black, (0, SIDE_WINDOW - SIZE_SPRITE, SIDE_WINDOW, SIZE_SPRITE), 100)
-
-    def pause_game(self):
-        pygame.time.delay(1000)
-
+        pygame.draw.rect(self.window, black, (0, SIDE_WINDOW - SIZE_SPRITE,
+                                              SIDE_WINDOW, SIZE_SPRITE), 100)

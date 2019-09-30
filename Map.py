@@ -21,7 +21,7 @@ class Map:
         self.positions_walls = self.find_positions_walls()
 
     def launch_map(self):
-        """Call the file of the map and put it in a list which contains the rows"""
+        """Call the file of the map and put it in a list"""
         for self.map_name in os.listdir("maps"):
             if self.map_name.endswith(".txt"):
                 path = os.path.join("maps", self.map_name)
@@ -106,8 +106,3 @@ class Map:
             return self.map
         else:
             return self
-
-
-
-
-

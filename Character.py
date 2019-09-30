@@ -37,7 +37,8 @@ class Character:
             return self.position_player[0]
 
     def get_state_player(self, the_char):
-        """When the player is moving, it returns a new version of the map with the new position of the player"""
+        """When the player is moving, it returns
+        a new version of the map with the new position of the player"""
         the_ret = []
         idx_row = 0
         for row in self.game_map:
@@ -58,26 +59,28 @@ class Character:
         """Create a list of objects when the player catch one"""
         objects_catch = list(objects_on_map)
         for object in objects_catch:
-            if self.position_player == position_char.find_position_char(object):
+            if self.position_player == position_char.find_position_char(
+                    object):
                 self.counter.append(object)
-                display.display_text_on_map("Félicitations! Vous avez récupéré l'objet : {}".format(object))
+                display.display_text_on_map(
+                    "Félicitations! Vous possèdez maintenant {} objet(s): {}"
+                    "".format(len(self.counter), ' et '.join(self.counter)))
                 clean.clean_char(object)
-                # display.display_text_on_map("Mac gyver possède maintenant les objets :")
-                # for element in self.counter:
-                #     display.display_text_on_map("-{}".format(element))
 
     def pass_guardian(self, clean, position_guardian, display):
-        """Remove the guardian when the player get all objects, otherwise he dies"""
+        """Remove the guardian when the player get all objects"""
         if self.position_player == position_guardian.find_position_guardian():
             if len(self.counter) == 2:
-                display.display_text_on_map("Bien joué, Tu as réussi à endormir le garde")
+                display.display_text_on_map("Bien joué, "
+                                            "Tu as réussi à endormir le garde")
                 clean.clean_char("G")
             else:
-                display.display_text_on_map("Mac Gyver n'a pas réussi à récupérer tous les objets, il en est mort...")
-                # return True
+                display.display_text_on_map(
+                    "Mac Gyver n'a pas réussi à récupérer tous les objets,"
+                    " il en est mort...")
 
     def is_won(self, position_exit, display):
         """Return True when the game is won"""
         if self.position_player == position_exit.find_position_exit():
-            display.display_text_on_map("Bravo!! Tu as réussi à sortir du labyrinthe!!!")
-            # return True
+            display.display_text_on_map("Bravo!! Tu as réussi "
+                                        "à sortir du labyrinthe!!!")
