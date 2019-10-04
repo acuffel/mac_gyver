@@ -5,6 +5,7 @@ from Display import *
 
 
 def main():
+    """Main to launch the game"""
     launch_game = Game()
     pygame.init()
 

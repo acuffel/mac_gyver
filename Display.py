@@ -9,6 +9,9 @@ class Display:
     clock = pygame.time.Clock()
 
     def __init__(self):
+        """initializing the class Display with :
+        - window
+        - background"""
         # Open window pygame
         self.window = pygame.display.set_mode((SIDE_WINDOW,
                                                SIDE_WINDOW + SIZE_SPRITE))

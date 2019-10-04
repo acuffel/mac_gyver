@@ -6,7 +6,10 @@ from constants import *
 class Game:
 
     def __init__(self):
-        """Launch the game"""
+        """Initializing the game with :
+        - Booleans
+        - Start window
+        - time.clock"""
         self.start_window = pygame.display.set_mode((SIDE_WINDOW, SIDE_WINDOW))
         self.continue_game = True
         self.display_menu = True
@@ -16,7 +19,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
     def main_loop(self):
-        # Display the menu in the window
+        """Display the main window"""
         start_menu = pygame.image.load(
             os.path.join('ressource', "accueil-macgyver.png")).convert()
         start_menu_onscall = pygame.transform.scale(
@@ -30,10 +33,12 @@ class Game:
         pygame.key.set_repeat(400, 30)
 
     def display_objects(self, map_mac_gyver):
+        """Display objects on pygame window"""
         map_mac_gyver.post_object()
         map_mac_gyver.clean_char("S")
 
     def menu_loop(self):
+        """Display the first menu"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.display_menu = False
@@ -52,6 +57,7 @@ class Game:
 
     def display_game_loop(self, map_mac_gyver, character_mac_gyver,
                           display_window):
+        """Display the game menu"""
         # 30 fps
         self.clock.tick(30)
 
@@ -109,6 +115,7 @@ class Game:
             pygame.display.flip()
 
     def dead_menu_loop(self):
+        """Display the end menu when the player dies"""
         # Display the menu in the window
         dead_window = pygame.image.load(
             os.path.join('ressource', "end_menu.jpg")).convert()
@@ -138,6 +145,7 @@ class Game:
                     self.display_menu = True
 
     def win_menu_loop(self):
+        """Display the end menu when the player wins"""
         # Display the menu in the window
         win_window = pygame.image.load(
             os.path.join('ressource', "end_menu.jpg")).convert()
