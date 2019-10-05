@@ -1,6 +1,6 @@
-import pygame
-import os
-from constants import *
+from Map import *
+from Character import *
+from Display import *
 
 
 class Game:
@@ -174,3 +174,31 @@ class Game:
                     self.display_game = False
                     self.continue_game = True
                     self.display_menu = True
+
+    def display_menus(self):
+        display_window = Display()
+        while self.continue_game:
+            map_mac_gyver = Map("base_map")
+            character_mac_gyver = Character(map_mac_gyver.position_player,
+                                            map_mac_gyver.positions_walls,
+                                            map_mac_gyver.map)
+            self.main_loop()
+
+            # Loop for the menu
+            self.display_objects(map_mac_gyver)
+
+            while self.display_menu:
+                self.menu_loop()
+
+            # Loop for the game
+            while self.display_game:
+                self.display_game_loop(map_mac_gyver, character_mac_gyver,
+                                              display_window)
+                # If MacGyver dies, the game display the dead menu
+
+                while self.dead_menu:
+                    self.dead_menu_loop()
+
+                # If MacGyver wins, the game display the win menu
+                while self.win_menu:
+                    self.win_menu_loop()
