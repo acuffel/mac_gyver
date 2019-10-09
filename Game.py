@@ -85,7 +85,7 @@ class Game:
             character_mac_gyver.catch_object(map_mac_gyver,
                                              map_mac_gyver,
                                              display_window,
-                                             "A", "B")
+                                             "A", "B", "C")
 
             # Display text on the map
             character_mac_gyver.pass_guardian(map_mac_gyver,
@@ -176,6 +176,7 @@ class Game:
                     self.display_menu = True
 
     def display_menus(self):
+        """Loops to manage the menus """
         display_window = Display()
         while self.continue_game:
             map_mac_gyver = Map("base_map")

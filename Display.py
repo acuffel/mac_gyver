@@ -42,6 +42,9 @@ class Display:
         img_obj_b = pygame.image.load(os.path.join(
             'ressource', "ether.png")).convert_alpha()
         img_obj_b_onscall = pygame.transform.scale(img_obj_b, (30, 30))
+        img_obj_c = pygame.image.load(os.path.join(
+            'ressource', "tube_plastique.png")).convert_alpha()
+        img_obj_c_onscall = pygame.transform.scale(img_obj_c, (30, 30))
 
         num_col = 0
         for row in game_map:
@@ -61,6 +64,8 @@ class Display:
                     self.window.blit(img_obj_a_onscall, (x, y))
                 elif sprite == 'B':
                     self.window.blit(img_obj_b_onscall, (x, y))
+                elif sprite == 'C':
+                    self.window.blit(img_obj_c_onscall, (x, y))
                 elif sprite == 'X':
                     self.window.blit(img_mac_gyver_onscall,
                                      (x_macgyver, y_macgyver))

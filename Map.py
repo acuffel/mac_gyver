@@ -94,15 +94,15 @@ class Map:
                     find_objects.append((idx_row, idx_col))
                 idx_col += 1
             idx_row += 1
-        random_position_object1 = random.choice(find_objects)
-        random_position_object2 = random.choice(find_objects)
-        if random_position_object1 != random_position_object2:
-            x1 = random_position_object1[0]
-            y1 = random_position_object1[1]
-            x2 = random_position_object2[0]
-            y2 = random_position_object2[1]
-            self.map[x1][y1] = 'A'
-            self.map[x2][y2] = 'B'
-            return self.map
-        else:
-            return self
+        random_position_object = random.sample(find_objects, 3)
+        x1 = random_position_object[0][0]
+        y1 = random_position_object[0][1]
+        x2 = random_position_object[1][0]
+        y2 = random_position_object[1][1]
+        x3 = random_position_object[2][0]
+        y3 = random_position_object[2][1]
+        self.map[x1][y1] = 'A'
+        self.map[x2][y2] = 'B'
+        self.map[x3][y3] = 'C'
+        return self.map
+

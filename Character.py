@@ -70,7 +70,7 @@ class Character:
     def pass_guardian(self, clean, position_guardian, display):
         """Remove the guardian when the player get all objects"""
         if self.position_player == position_guardian.find_position_guardian():
-            if len(self.counter) == 2:
+            if len(self.counter) == 3:
                 display.display_text_on_map("Bien joué, "
                                             "Tu as réussi à endormir le garde")
                 clean.clean_char("G")
